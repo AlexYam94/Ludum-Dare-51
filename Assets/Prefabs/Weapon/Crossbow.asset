@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b254493f8b909469c71d49fa84a25f, type: 3}
+  m_Name: Crossbow
+  m_EditorClassIdentifier: 
+  type: 3
+  weaponSprite: {fileID: 387382766, guid: 341e0b63147250148953e922aa652231, type: 3}
+  weaponAnimator: {fileID: 0}
+  autoMode: 0
+  capacity: 10
