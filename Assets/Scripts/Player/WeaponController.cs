@@ -11,12 +11,15 @@ public class WeaponController : MonoBehaviour
 
     FireController _fireController;
     float _loopCounter;
+    Weapon _lastWeapon;
 
 
     // Start is called before the first frame update
     void Start()
     {
         _fireController = GetComponent<FireController>();
+        _lastWeapon = _fireController._currentWeapon;
+        _loopCounter = _loopTime;
     }
 
     // Update is called once per frame
@@ -27,7 +30,8 @@ public class WeaponController : MonoBehaviour
         {
             _loopCounter = _loopTime;
             Weapon nextWeapon = GetRandomWeapon();
-            _fireController._currentWeapon = nextWeapon;
+            _lastWeapon = nextWeapon;
+            _fireController.ChangeWeapon(nextWeapon);
             //TODO:
             //Change arm sprite and override animator
             _armSprite.sprite = nextWeapon.weaponSprite;
@@ -38,6 +42,12 @@ public class WeaponController : MonoBehaviour
     private Weapon GetRandomWeapon()
     {
         System.Random random = new System.Random();
-        return _weapons[random.Next(0, _weapons.Length)];
+        Weapon nextWeapon;
+        do
+        {
+            nextWeapon = _weapons[random.Next(0, _weapons.Length)];
+        } while (nextWeapon.type == _lastWeapon.type);
+        _lastWeapon = nextWeapon;
+        return nextWeapon;
     }
 }

@@ -7,12 +7,13 @@ using static FirePattern;
 
 public class FireController : MonoBehaviour
 {
-    [SerializeField] Bullet _bullectPrefab;
+    //[SerializeField] Bullet _bullectPrefab;
     [SerializeField] Transform _firePosition;
     [SerializeField] Transform _fireUpPosition;
     [SerializeField] GameObject _bomb;
     [SerializeField] Transform _bombPosition;
     [SerializeField] int _bulletPoolInitialCount = 10;
+    [SerializeField] AudioClip _emptyGunShot;
     
     public Weapon _currentWeapon;
 
@@ -24,6 +25,7 @@ public class FireController : MonoBehaviour
     PlayerAnimation _playerAnimation;
     Transform _whereToFire;
     FirePattern _pattern;
+    float _fireCounter = 0;
     //IEnumerator _currentReloadCoroutine;
 
 
@@ -38,7 +40,7 @@ public class FireController : MonoBehaviour
         _playerAnimation = GetComponent<PlayerAnimation>();
         _whereToFire = _firePosition;
         //_bulletPool = new ObjectPool<Bullet>(CreateBullet, _bullectPrefab, _firePosition, _bulletPoolInitialCount);
-        //_audioSource = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
         bulletCount = _currentWeapon.capacity;
     }
 
@@ -55,16 +57,28 @@ public class FireController : MonoBehaviour
 
     private void Update()
     {
-        if (bulletCount <= 0) return;
         //poolCount = _bulletPool.GetCount();
         //DecideFirePosition();
-        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0) || (Input.GetKey(KeyCode.Mouse0) && bulletCount > 0 ))
         {
-            if (_isStanding && _canFire)
+            if (_fireCounter <= 0)
             {
-                Shoot();
+                _fireCounter = _currentWeapon.fireRate;
+                if (bulletCount <= 0)
+                {
+                    _audioSource.PlayOneShot(_emptyGunShot);
+                }
+                else
+                {
+                    if (_isStanding && _canFire)
+                    {
+                        Shoot();
+                    }
+                }
             }
         }
+        _fireCounter -= Time.deltaTime;
+        
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             _canFire = true;
@@ -108,7 +122,9 @@ public class FireController : MonoBehaviour
         {
             _canFire = false;
         }
-        _currentWeapon.Fire().Invoke(_firePosition.transform.position,_firePosition.transform.right, _bullectPrefab);
+        _currentWeapon.Fire().Invoke(_firePosition,_firePosition.transform.right);
+        _playerAnimation.Shoot();
+        _audioSource.PlayOneShot(_currentWeapon.gunshot);
         bulletCount -= 1;
     }
 
@@ -149,5 +165,6 @@ public class FireController : MonoBehaviour
         bulletCount = nextWeapon.capacity;
         _currentWeapon = nextWeapon;
         //StopCoroutine(_currentReloadCoroutine);
+        _playerAnimation.OverrideArmController(nextWeapon.weaponAnimatorController);
     }
 }

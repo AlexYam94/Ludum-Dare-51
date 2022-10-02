@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   type: 1
-  weaponSprite: {fileID: 387382766, guid: 341e0b63147250148953e922aa652231, type: 3}
-  weaponAnimator: {fileID: 0}
+  bullet: {fileID: 5075974802296590216, guid: 10c7ac67632da95459de1ba833333455, type: 3}
+  weaponSprite: {fileID: -294629827, guid: 8fb4fd27b32b5f040b6a202738b5f4d0, type: 3}
+  weaponAnimatorController: {fileID: 22100000, guid: d2e6271e8b830be4985724cd0768be69, type: 2}
+  gunshot: {fileID: 8300000, guid: f34f0e3bd822c064087204b1f730149d, type: 3}
   autoMode: 0
-  capacity: 10
+  capacity: 7
+  reloadTime: 0
+  fireRate: 0.7
+  spread: 0.2

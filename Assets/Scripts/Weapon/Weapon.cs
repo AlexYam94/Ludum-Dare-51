@@ -7,11 +7,15 @@ using UnityEngine;
 public class Weapon : ScriptableObject
 {
     public weaponType type;
+    public Bullet bullet;
     public Sprite weaponSprite;
-    public AnimatorOverrideController weaponAnimator;
+    public AnimatorOverrideController weaponAnimatorController;
+    public AudioClip gunshot;
     public bool autoMode = false;
     public int capacity = 10;
     public float reloadTime = 2;
+    public float fireRate = .1f;
+    public float spread = 1;
 
     public enum weaponType{
         pistol,
@@ -20,7 +24,7 @@ public class Weapon : ScriptableObject
         crossbow
     }
 
-    public Action<Vector3, Vector2, Bullet> Fire()
+    public Action<Transform, Vector2> Fire()
     {
         switch (type)
         {
@@ -36,28 +40,58 @@ public class Weapon : ScriptableObject
         return PistolFire;
     }
 
-    private void PistolFire(Vector3 origin, Vector2 direction, Bullet bullet)
+    private void PistolFire(Transform firePoint, Vector2 direction)
     {
         Bullet b = GameObject.Instantiate(bullet);
-        b.transform.position = origin;
+        b.transform.position = firePoint.position;
         b.SetDirection(direction);
     }
-    private void ShotgunFire(Vector3 origin, Vector2 direction, Bullet bullet)
+    private void ShotgunFire(Transform firePoint, Vector2 direction)
+    {
+        int bulletCount = 10;
+        Quaternion newRot = firePoint.rotation;
+
+        Bullet[] bullets = new Bullet[bulletCount];
+
+        for (int i = 0; i < bulletCount; i++)
+        {
+            float addedOffset;
+
+            do
+            {
+                addedOffset = (float)new System.Random().NextDouble();
+            } while (addedOffset > spread);
+
+
+            Bullet b = Instantiate(bullet, firePoint.position, newRot);
+            //b.transform.position = origin;
+
+            b.canFly = false;
+            bullets[i] = b;
+            if (i % 2 == 0)
+            {
+                b.SetDirection(new Vector2(direction.x + addedOffset, direction.y + addedOffset));
+            }
+            else
+            {
+                b.SetDirection(new Vector2(direction.x - addedOffset, direction.y - addedOffset));
+            }
+        }
+        foreach(Bullet b in bullets)
+        {
+            b.canFly = true;
+        }
+    }
+    private void SmgFire(Transform firePoint, Vector2 direction)
     {
         Bullet b = GameObject.Instantiate(bullet);
-        b.transform.position = origin;
+        b.transform.position = firePoint.position;
         b.SetDirection(direction);
     }
-    private void SmgFire(Vector3 origin, Vector2 direction, Bullet bullet)
+    private void CrossbpwFire(Transform firePoint, Vector2 direction)
     {
         Bullet b = GameObject.Instantiate(bullet);
-        b.transform.position = origin;
-        b.SetDirection(direction);
-    }
-    private void CrossbpwFire(Vector3 origin, Vector2 direction, Bullet bullet)
-    {
-        Bullet b = GameObject.Instantiate(bullet);
-        b.transform.position = origin;
+        b.transform.position = firePoint.position;
         b.SetDirection(direction);
     }
 }

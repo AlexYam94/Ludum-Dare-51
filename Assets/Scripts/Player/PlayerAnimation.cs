@@ -7,6 +7,9 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] Animator _playerAnimator;
     [SerializeField] Animator _ballAnimator;
     [SerializeField] RuntimeAnimatorController _shotUpOverride;
+    [SerializeField] Animator _armAnimator;
+
+    //public RuntimeAnimatorController _armOverride;
 
     private RuntimeAnimatorController _originAnimController;
     bool _isBall;
@@ -43,7 +46,8 @@ public class PlayerAnimation : MonoBehaviour
     public void Shoot()
     {
         //if (_isBall) return;
-        _currentAnimator.SetTrigger("shoot");
+        //_currentAnimator.SetTrigger("shoot");
+        _armAnimator.SetTrigger("shoot");
     }
 
     public void ShootUp()
@@ -57,6 +61,11 @@ public class PlayerAnimation : MonoBehaviour
     {
         _currentAnimator.runtimeAnimatorController = _shotUpOverride;
 
+    }
+
+    public void OverrideArmController(RuntimeAnimatorController controller)
+    {
+        _armAnimator.runtimeAnimatorController = controller;
     }
 
     public void RestoreAnimator()

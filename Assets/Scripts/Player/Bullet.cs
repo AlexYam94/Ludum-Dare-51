@@ -9,16 +9,19 @@ public class Bullet : MonoBehaviour
     [SerializeField] ParticleSystem _impactEffect;
     [SerializeField] float _lifeTime = 10f;
     [SerializeField] int _damageAmount = 1;
+    [SerializeField] int _penetrateAmount = 1;
 
+    public bool canFly = true;
 
     ObjectPool<Bullet> _pool;
+    int _penetrateCount = 0;
 
     Rigidbody2D _rb;
     //Direction _direction;
     Vector3 _direction;
     Vector2 _moveDir = Vector2.right;
 
-    public void SetObjectPool(ObjectPool<Bullet> pool)
+        public void SetObjectPool(ObjectPool<Bullet> pool)
     {
         _pool = pool;
     }
@@ -41,32 +44,39 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        Destroy(gameObject, _lifeTime);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        _rb.velocity = _direction * bulletSpeed;
+        if(canFly)
+            _rb.velocity = (_direction).normalized * bulletSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Enemy")
         {
-            other.GetComponent<EnemyHealthController>()?.Damage(_damageAmount);
+            other.GetComponent<EnemyHealthController>()?.Damage(_damageAmount); 
+            _penetrateCount++;
         }
         if (other.tag == "Boss")
         {
             other.GetComponentInParent<BossHealthController>().TakeDamage(_damageAmount);
+            _penetrateCount++;
         }
         //_pool.Enqueue(this);
         //gameObject.SetActive(false);
 
-        Destroy(gameObject);
-        if (_impactEffect != null)
+        if (_penetrateCount > _penetrateAmount)
         {
-            //TODO: Play hit sound
-            Instantiate(_impactEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+            if (_impactEffect != null)
+            {
+                //TODO: Play hit sound
+                Instantiate(_impactEffect, transform.position, Quaternion.identity);
+            }
         }
     }
 
@@ -74,6 +84,6 @@ public class Bullet : MonoBehaviour
     {
         //_pool.Enqueue(this);
         //gameObject.SetActive(false);
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }

@@ -31,17 +31,21 @@ public class PointToCursor : MonoBehaviour
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
-        Debug.DrawLine(transform.position, Camera.main.ScreenToWorldPoint(mousePos), Color.red);
 
+        var scale = _playerTransform.localScale;
         if (rotationZ < -90 || rotationZ > 90)
         {
-            _playerSprite.flipX = true;
-             transform.localRotation = Quaternion.Euler(180, 0, -rotationZ);
+            //_playerSprite.flipX = true;
+            scale.x = -1;
+            transform.localRotation = Quaternion.Euler(180, 0, rotationZ);
         }
         else
         {
-                transform.localRotation = Quaternion.Euler(0, 0, rotationZ);
-            _playerSprite.flipX = false;
+            transform.localRotation = Quaternion.Euler(0, 0, rotationZ);
+            scale.x = 1;
+            //_playerSprite.flipX = false;
         }
+        _playerTransform.localScale = scale;
+        transform.localScale = scale;
     }
 }

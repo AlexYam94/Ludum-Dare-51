@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ShotgunOverride
+  m_Controller: {fileID: 9100000, guid: 88864b1bccfefdd4ea19c0aac2b45716, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: e66768defaea166479f64c361661dd5c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 35e8842a886ff6d4786787484e4999b6, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c76ae11054e057745bbcaf9d7953bc2f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a1d47697d2173194693e9c2d14bfce80, type: 2}

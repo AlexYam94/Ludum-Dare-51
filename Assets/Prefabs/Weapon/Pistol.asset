@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   type: 0
+  bullet: {fileID: 2011052572, guid: f3d1cec23a3a53a498a8e97533d342e8, type: 3}
   weaponSprite: {fileID: 1340369819, guid: 341e0b63147250148953e922aa652231, type: 3}
-  weaponAnimator: {fileID: 0}
+  weaponAnimatorController: {fileID: 22100000, guid: f137793e3b31bf74db2737be98f4d2fd, type: 2}
+  gunshot: {fileID: 8300000, guid: dd97fa471d3be394db5f96bad70e8e26, type: 3}
   autoMode: 0
   capacity: 10
+  reloadTime: 0
+  fireRate: 0.1
+  spread: 1

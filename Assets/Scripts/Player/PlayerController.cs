@@ -229,7 +229,7 @@ public class PlayerController : MonoBehaviour
 
     private void Flip(bool facingRight)
     {
-        _playerSprite.flipX = !facingRight;
+        //_playerSprite.flipX = !facingRight;
         //Vector3 scale = transform.localScale;
         //if (!facingRight) scale.x = System.Math.Abs(scale.x) * -1;
         //else scale.x = System.Math.Abs(scale.x);
