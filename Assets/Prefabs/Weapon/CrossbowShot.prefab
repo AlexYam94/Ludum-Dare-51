@@ -9,8 +9,32 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2011052572, guid: f3d1cec23a3a53a498a8e97533d342e8, type: 3}
+      propertyPath: _lifeTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011052572, guid: f3d1cec23a3a53a498a8e97533d342e8, type: 3}
+      propertyPath: bulletSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011052572, guid: f3d1cec23a3a53a498a8e97533d342e8, type: 3}
       propertyPath: _damageAmount
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011052572, guid: f3d1cec23a3a53a498a8e97533d342e8, type: 3}
+      propertyPath: _penetrateAmount
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011052574, guid: f3d1cec23a3a53a498a8e97533d342e8, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011052574, guid: f3d1cec23a3a53a498a8e97533d342e8, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 182835347234657019, guid: f3d1cec23a3a53a498a8e97533d342e8, type: 3}
+      propertyPath: m_Time
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6124865796876114776, guid: f3d1cec23a3a53a498a8e97533d342e8, type: 3}
       propertyPath: m_RootOrder

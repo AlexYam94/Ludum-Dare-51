@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2153447823744740985}
   - component: {fileID: 2153447823744740986}
   - component: {fileID: 1198058394}
+  - component: {fileID: 1132665277147158191}
   m_Layer: 12
   m_Name: Enemy Walker
   m_TagString: Enemy
@@ -38,7 +39,7 @@ Transform:
   - {fileID: 2153447824246117574}
   - {fileID: 2153447823617697023}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &2153447822543317221
 CircleCollider2D:
@@ -96,7 +97,7 @@ MonoBehaviour:
   - {fileID: 2153447823342593056}
   _moveSpeed: 5
   _waitAtPoint: 1
-  _jumpForce: 10
+  _jumpForce: 5
   _rb: {fileID: 2153447822543317242}
 --- !u!114 &2153447823744740984
 MonoBehaviour:
@@ -154,15 +155,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0127f8c607d26014291564f3d0615eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropRate: 0.2
+  dropRate: 0.05
   itemsToDrop:
-  - {fileID: 2704299513600459222, guid: 39b96846bf91ade44bee9296ad748f9d, type: 3}
-  - {fileID: 7822444963552913432, guid: c1bf07ed6bf38a545bfb1321454f8489, type: 3}
-  - {fileID: 4813607073826385307, guid: c45db67cb176eef47aa9f231f89f699b, type: 3}
-  - {fileID: 8898327630595852942, guid: 3240081328b795c43a2fd108af412b55, type: 3}
-  - {fileID: 6722609896460957922, guid: 7a93b2c0607c03942a90192685191049, type: 3}
-  - {fileID: 2863379829409290409, guid: a5dc2a6691f8cfe4e9b1b87873ca256a, type: 3}
   - {fileID: 2515406816958579104, guid: ce98b124e9e55d84291d716a83a0b972, type: 3}
+--- !u!114 &1132665277147158191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2153447822543317240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 1
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.06509495, y: -0.83315873, z: 0}
+  - {x: -0.19794989, y: 0.44073796, z: 0}
+  - {x: 0.3654623, y: 0.8624072, z: 0}
+  - {x: 0.81023693, y: -0.63676476, z: 0}
+  - {x: 0.20576334, y: -0.8530369, z: 0}
+  m_ShapePathHash: -1775578753
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 98276
 --- !u!1 &2153447822600836147
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +366,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -364,7 +387,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3742267620615937493, guid: 94672c82a939e214692c5058d496b38e, type: 3}
+  m_Sprite: {fileID: 1967635204, guid: 030062e34a55295479630709b97abba2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

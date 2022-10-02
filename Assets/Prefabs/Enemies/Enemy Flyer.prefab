@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5407313185863379288}
   - component: {fileID: 1809171995}
   - component: {fileID: 965266461}
+  - component: {fileID: 8314504072690440411}
   m_Layer: 12
   m_Name: Enemy Flyer
   m_TagString: Enemy
@@ -36,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 5407313186073380696}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &5407313185863379270
 CircleCollider2D:
@@ -118,8 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9be2c1f112fc714792437047a6b1d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rangeToStartChase: 7
-  _flySpeed: 5
+  _rangeToStartChase: 10
+  _flySpeed: 2
   _turnSpeed: 5
 --- !u!114 &965266461
 MonoBehaviour:
@@ -142,6 +143,35 @@ MonoBehaviour:
   - {fileID: 6722609896460957922, guid: 7a93b2c0607c03942a90192685191049, type: 3}
   - {fileID: 2863379829409290409, guid: a5dc2a6691f8cfe4e9b1b87873ca256a, type: 3}
   - {fileID: 2515406816958579104, guid: ce98b124e9e55d84291d716a83a0b972, type: 3}
+--- !u!114 &8314504072690440411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5407313185863379268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 1
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: 0.43099308, y: -0.12748039, z: 0}
+  - {x: 0.2447834, y: 0.3383246, z: 0.00000023841858}
+  - {x: -0.1612997, y: 0.3748967, z: 0}
+  - {x: -0.41488767, y: 0.032223344, z: 0}
+  - {x: -0.27629948, y: -0.33063287, z: 0.00000023841858}
+  - {x: 0.061700344, y: -0.40104955, z: 0.00000023841858}
+  m_ShapePathHash: 740913349
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 97752
 --- !u!1 &5407313186073380697
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +225,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -216,7 +246,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2641295596324315248, guid: 177ced63b0ffba5469c2842fd6f5d860, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 51f0072de0d02ee4a841c6a859774a2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

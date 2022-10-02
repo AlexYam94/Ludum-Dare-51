@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class EnemyHealthController : MonoBehaviour
     [SerializeField] int _score = 100;
     
     [SerializeField] GameObject _deathSound;
+
+    public Action onDeath;
+
     public void Damage(int damageAmount)
     {
         if((_totalHealth -= damageAmount) <= 0)
@@ -20,6 +24,7 @@ public class EnemyHealthController : MonoBehaviour
                 GetComponent<DropitemController>()?.DropItem();
                 ScoreController.GetInstance().Add(_score);
             }
+            onDeath?.Invoke();
             Destroy(gameObject);
         }
     }

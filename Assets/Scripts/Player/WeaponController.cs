@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
@@ -8,6 +9,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] Weapon[] _weapons;
     [SerializeField] float _loopTime = 10f;
     [SerializeField] SpriteRenderer _armSprite;
+    [SerializeField] TextMeshProUGUI _text;
 
     FireController _fireController;
     float _loopCounter;
@@ -26,6 +28,7 @@ public class WeaponController : MonoBehaviour
     void Update()
     {
         _loopCounter -= Time.deltaTime;
+        _text.text = "" + Mathf.Ceil(_loopCounter);
         if (_loopCounter < 0)
         {
             _loopCounter = _loopTime;

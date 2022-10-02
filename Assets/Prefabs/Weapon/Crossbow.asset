@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Crossbow
   m_EditorClassIdentifier: 
   type: 3
-  bullet: {fileID: 2011052572, guid: f3d1cec23a3a53a498a8e97533d342e8, type: 3}
+  bullet: {fileID: 5043269416913553975, guid: eac8da3b07bbfbe4c94b8e467015ad9d, type: 3}
   weaponSprite: {fileID: 387382766, guid: 341e0b63147250148953e922aa652231, type: 3}
-  weaponAnimatorController: {fileID: 0}
-  gunshot: {fileID: 0}
+  weaponAnimatorController: {fileID: 22100000, guid: 82259967326b0c146a6602dae392b8f5, type: 2}
+  gunshot: {fileID: 8300000, guid: 143ce57289ba06c459cabead1c328013, type: 3}
   autoMode: 0
   capacity: 3
   reloadTime: 0
-  fireRate: 1.5
+  fireRate: 2
   spread: 1

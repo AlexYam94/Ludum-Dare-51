@@ -14,19 +14,34 @@ public class FireController : MonoBehaviour
     [SerializeField] Transform _bombPosition;
     [SerializeField] int _bulletPoolInitialCount = 10;
     [SerializeField] AudioClip _emptyGunShot;
-    
+    [SerializeField] AudioSource _audioSource;
+
     public Weapon _currentWeapon;
 
     public int poolCount = 0;
 
     private int bulletCount;
-    AudioSource _audioSource;
     //ObjectPool<Bullet> _bulletPool;
     PlayerAnimation _playerAnimation;
     Transform _whereToFire;
     FirePattern _pattern;
     float _fireCounter = 0;
     //IEnumerator _currentReloadCoroutine;
+    
+    // Transform of the GameObject you want to shake
+    private Transform transform;
+
+    // Desired duration of the shake effect
+    private float shakeDuration = 0f;
+
+    // A measure of magnitude for the shake. Tweak based on your preference
+    private float shakeMagnitude = 0.7f;
+
+    // A measure of how quickly the shake effect should evaporate
+    private float dampingSpeed = 1.0f;
+
+    // The initial position of the GameObject
+    Vector3 initialPosition;
 
 
 
@@ -40,8 +55,8 @@ public class FireController : MonoBehaviour
         _playerAnimation = GetComponent<PlayerAnimation>();
         _whereToFire = _firePosition;
         //_bulletPool = new ObjectPool<Bullet>(CreateBullet, _bullectPrefab, _firePosition, _bulletPoolInitialCount);
-        _audioSource = GetComponent<AudioSource>();
         bulletCount = _currentWeapon.capacity;
+        initialPosition = Camera.main.transform.localPosition;
     }
 
     private void OnLevelWasLoaded()
@@ -59,7 +74,7 @@ public class FireController : MonoBehaviour
     {
         //poolCount = _bulletPool.GetCount();
         //DecideFirePosition();
-        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0) || (Input.GetKey(KeyCode.Mouse0) && bulletCount > 0 ))
+        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0) || (Input.GetKey(KeyCode.Mouse0) && bulletCount > 0))
         {
             if (_fireCounter <= 0)
             {
@@ -73,12 +88,13 @@ public class FireController : MonoBehaviour
                     if (_isStanding && _canFire)
                     {
                         Shoot();
+                        ShakeCamera();
                     }
                 }
             }
         }
         _fireCounter -= Time.deltaTime;
-        
+
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             _canFire = true;
@@ -88,6 +104,22 @@ public class FireController : MonoBehaviour
         //    _currentReloadCoroutine = Reload();
         //    StartCoroutine(_currentReloadCoroutine);
         //}
+
+    }
+
+    private void ShakeCamera()
+    {
+        if (shakeDuration > 0)
+        {
+            Camera.main.transform.localPosition = initialPosition + UnityEngine.Random.insideUnitSphere * shakeMagnitude;
+
+            shakeDuration -= Time.deltaTime * dampingSpeed;
+        }
+        else
+        {
+            shakeDuration = 0f;
+            Camera.main.transform.localPosition = initialPosition;
+        }
     }
 
     private IEnumerator Reload()
@@ -126,6 +158,8 @@ public class FireController : MonoBehaviour
         _playerAnimation.Shoot();
         _audioSource.PlayOneShot(_currentWeapon.gunshot);
         bulletCount -= 1;
+        shakeDuration = .2f;
+
     }
 
     private void DecideFirePosition()
@@ -166,5 +200,6 @@ public class FireController : MonoBehaviour
         _currentWeapon = nextWeapon;
         //StopCoroutine(_currentReloadCoroutine);
         _playerAnimation.OverrideArmController(nextWeapon.weaponAnimatorController);
+        _fireCounter = 0;
     }
 }

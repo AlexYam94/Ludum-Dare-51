@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] float _lifeTime = 10f;
     [SerializeField] int _damageAmount = 1;
     [SerializeField] int _penetrateAmount = 1;
+    [SerializeField] int _groundLayer;
 
     public bool canFly = true;
 
@@ -69,7 +70,7 @@ public class Bullet : MonoBehaviour
         //_pool.Enqueue(this);
         //gameObject.SetActive(false);
 
-        if (_penetrateCount > _penetrateAmount)
+        if ((other.gameObject.layer == _groundLayer) || _penetrateCount > _penetrateAmount)
         {
             Destroy(gameObject);
             if (_impactEffect != null)

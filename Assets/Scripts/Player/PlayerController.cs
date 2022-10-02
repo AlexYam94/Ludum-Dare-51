@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     private bool _invertedControl = false;
     private bool _canStop = true;
     private bool _isVisible = true;
+    AudioSource _audioSource;
 
     private void Start()
     {
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
         _canStop = true;
         _coyoteCounter = _coyoteTime;
         _isVisible = true;
+        _audioSource = GetComponent<AudioSource>();
 }
 
     private void Update()
@@ -79,11 +81,6 @@ public class PlayerController : MonoBehaviour
         }
 
         _playerAnimation.RestoreAnimator();
-        if (Input.GetKey(KeyCode.W))
-        {
-            _playerAnimation.OverrideAnimator();
-        }
-
 
         if (!Input.GetKey(KeyCode.W))
         {
@@ -110,7 +107,7 @@ public class PlayerController : MonoBehaviour
             _dashRechargeCounter = Mathf.Max(_dashRechargeCounter - Time.deltaTime, 0);
         }
         //else if (_abilitiesController.canDash && Input.GetButtonDown("Fire2") && _canStand)
-        else if (_abilitiesController.canDash && Input.GetKeyDown(KeyCode.K) && _canStand)
+        else if (_abilitiesController.canDash && Input.GetKeyDown(KeyCode.LeftShift) && _canStand)
                 {
             _dashCounter = _dashTime;
             _dashRechargeCounter = _waitAfterDashing;
@@ -145,13 +142,28 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            if (horizontal != 0)
+            {
+                _audioSource.enabled = true;
+            }
+            else
+            {
+                _audioSource.enabled = false;
+            }
             if (_canStop)
             {
                 velocity.x = horizontal * _moveSpeed * _speedScale;
             }
-            else { 
-                if(horizontal != 0)
+            else {
+                if (horizontal != 0)
+                {
+                    _audioSource.enabled = true;
                     velocity.x = horizontal * _moveSpeed * _speedScale;
+                }
+                else
+                {
+                    _audioSource.enabled = false;
+                }
             }
         }
         _playerAnimation.Move(horizontal);
