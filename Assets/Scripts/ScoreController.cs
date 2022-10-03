@@ -22,7 +22,7 @@ public class ScoreController : Singleton<ScoreController>
 
     private void Update()
     {
-        _scoreText.text = "Score: " + GetScore();
+        _scoreText.text = ""+GetScore();
     }
 
     public void Add(int score)
@@ -49,5 +49,6 @@ public class ScoreController : Singleton<ScoreController>
     public void ResetScore()
     {
         _totalScore = 0;
+        _currentLevelScore = 0;
     }
 }

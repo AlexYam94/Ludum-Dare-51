@@ -11,7 +11,7 @@ public class HealthPickup : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            PlayerHealthController.GetInstance().GetExtraHealth(_extraHealthAmount);
+            PlayerHealthController.GetInstance().GetHealth(_extraHealthAmount);
             if(_pickupEffect != null)
             {
                 Instantiate(_pickupEffect, transform.position, Quaternion.identity);

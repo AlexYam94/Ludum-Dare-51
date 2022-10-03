@@ -103,9 +103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4a31e9f79b070428dff2c6395de2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _totalHealth: 2
+  _totalHealth: 1
   _deathEffect: {fileID: 3928772607567927070, guid: 0ef60f7ad0161494a82a2f83e6d049af, type: 3}
-  _score: 100
+  _score: 0
   _deathSound: {fileID: 3795570665827283874, guid: b61d89d2c3410fc4fb6191c6a4c6817e, type: 3}
 --- !u!114 &1809171995
 MonoBehaviour:
@@ -134,14 +134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0127f8c607d26014291564f3d0615eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropRate: 0.2
+  dropRate: 0.01
   itemsToDrop:
-  - {fileID: 2704299513600459222, guid: 39b96846bf91ade44bee9296ad748f9d, type: 3}
-  - {fileID: 7822444963552913432, guid: c1bf07ed6bf38a545bfb1321454f8489, type: 3}
-  - {fileID: 4813607073826385307, guid: c45db67cb176eef47aa9f231f89f699b, type: 3}
-  - {fileID: 8898327630595852942, guid: 3240081328b795c43a2fd108af412b55, type: 3}
-  - {fileID: 6722609896460957922, guid: 7a93b2c0607c03942a90192685191049, type: 3}
-  - {fileID: 2863379829409290409, guid: a5dc2a6691f8cfe4e9b1b87873ca256a, type: 3}
+  - {fileID: 1017204804183883455, guid: 52a1cd6321071d24f959d83b3ef27127, type: 3}
   - {fileID: 2515406816958579104, guid: ce98b124e9e55d84291d716a83a0b972, type: 3}
 --- !u!114 &8314504072690440411
 MonoBehaviour:
@@ -171,7 +166,7 @@ MonoBehaviour:
   - {x: 0.061700344, y: -0.40104955, z: 0.00000023841858}
   m_ShapePathHash: 740913349
   m_Mesh: {fileID: 0}
-  m_InstanceId: 97752
+  m_InstanceId: 45072
 --- !u!1 &5407313186073380697
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,7 +240,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 51f0072de0d02ee4a841c6a859774a2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

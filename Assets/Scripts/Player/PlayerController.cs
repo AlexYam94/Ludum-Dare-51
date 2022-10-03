@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        ScoreController.GetInstance()?.ResetScore();
         _playerAnimation = GetComponent<PlayerAnimation>();
         _fireController = GetComponent<FireController>();
         _playerEffectController = GetComponent<PlayerEffectController>();
@@ -107,7 +108,7 @@ public class PlayerController : MonoBehaviour
             _dashRechargeCounter = Mathf.Max(_dashRechargeCounter - Time.deltaTime, 0);
         }
         //else if (_abilitiesController.canDash && Input.GetButtonDown("Fire2") && _canStand)
-        else if (_abilitiesController.canDash && Input.GetKeyDown(KeyCode.LeftShift) && _canStand)
+        else if (_abilitiesController.canDash && Input.GetKeyDown(KeyCode.Mouse1) && _canStand)
                 {
             _dashCounter = _dashTime;
             _dashRechargeCounter = _waitAfterDashing;
@@ -134,6 +135,7 @@ public class PlayerController : MonoBehaviour
         }
         /* dash */
 
+        bool grounded = IsGrounded();
         Vector2 velocity = _rb.velocity;
         float horizontal = Input.GetAxisRaw("Horizontal") * (_invertedControl ? -1 : 1);
         if (_ball.activeSelf)
@@ -142,7 +144,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (horizontal != 0)
+            if (horizontal != 0 && grounded)
             {
                 _audioSource.enabled = true;
             }
@@ -168,7 +170,6 @@ public class PlayerController : MonoBehaviour
         }
         _playerAnimation.Move(horizontal);
 
-        bool grounded = IsGrounded();
         if (!grounded)
         {
             _coyoteCounter -= Time.deltaTime;

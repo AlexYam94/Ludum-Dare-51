@@ -18,7 +18,7 @@ MonoBehaviour:
   weaponAnimatorController: {fileID: 22100000, guid: 82259967326b0c146a6602dae392b8f5, type: 2}
   gunshot: {fileID: 8300000, guid: 143ce57289ba06c459cabead1c328013, type: 3}
   autoMode: 0
-  capacity: 3
+  capacity: 5
   reloadTime: 0
-  fireRate: 2
+  fireRate: 1.5
   spread: 1

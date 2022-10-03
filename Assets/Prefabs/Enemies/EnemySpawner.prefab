@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &7882661912650940127
 BoxCollider2D:
@@ -74,8 +74,8 @@ MonoBehaviour:
   _enemyToSpawn:
   - {fileID: 2153447822543317240, guid: e42c871c561f71c43a2ede569ae96074, type: 3}
   - {fileID: 5407313185863379268, guid: d021cdb88df53cc45820ae6f9c90c97b, type: 3}
-  _spawnInterval: 10
-  _increaseSpawnInterval: 20
+  _spawnInterval: 15
+  _increaseSpawnInterval: 30
   _increaseSpawnAmount: 1
   _spawnArea: {fileID: 7882661912650940127}
   _maxAvailable: 40

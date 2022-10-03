@@ -22,7 +22,7 @@ public class PlayerHealthController : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
-            DontDestroyOnLoad(this);
+            //DontDestroyOnLoad(this);
         }
         else if (_instance != this)
         {
@@ -88,11 +88,17 @@ public class PlayerHealthController : MonoBehaviour
         }
     }
 
-    public void GetExtraHealth(int extraHealth)
+    public void GetHealth(int extraHealth)
     {
-        _maxHealth += extraHealth;
-        FillHealth();
+        if (_currentHealth + extraHealth <= _maxHealth)
+        {
+            _currentHealth += extraHealth;
+        }else if(_currentHealth + extraHealth -1 == _maxHealth)
+        {
+            _currentHealth += 1;
+        }
         UIController.GetInstance().SetHealthBarLength(_maxHealth);
+        UpdateHealthUI();
     }
 
     public void FillHealth()

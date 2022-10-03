@@ -6,6 +6,7 @@ using UnityEngine;
 public class LookAt : MonoBehaviour
 {
     [SerializeField] string _playerTag;
+    [SerializeField] Transform _follow;
 
     CinemachineVirtualCamera _virtualCam;
     GameObject _player;
@@ -28,8 +29,16 @@ public class LookAt : MonoBehaviour
         }
         if(_virtualCam.Follow == null)
         {
-            _virtualCam.Follow = _player.transform;
-            _virtualCam.ForceCameraPosition(new Vector3(_player.transform.position.x, _player.transform.position.y, transform.position.z), transform.rotation);
+            if (_follow != null)
+            {
+                _virtualCam.Follow = _follow;
+                _virtualCam.ForceCameraPosition(new Vector3(_follow.position.x, _follow.position.y, transform.position.z), transform.rotation);
+            }
+            else
+            {
+                _virtualCam.Follow = _player.transform;
+                _virtualCam.ForceCameraPosition(new Vector3(_player.transform.position.x, _player.transform.position.y, transform.position.z), transform.rotation);
+            }
         }
     }
 }

@@ -95,9 +95,9 @@ MonoBehaviour:
   - {fileID: 2153447823342593056}
   - {fileID: 2153447822936490439}
   - {fileID: 2153447823342593056}
-  _moveSpeed: 5
-  _waitAtPoint: 1
-  _jumpForce: 5
+  _moveSpeed: 3
+  _waitAtPoint: 1.5
+  _jumpForce: 0
   _rb: {fileID: 2153447822543317242}
 --- !u!114 &2153447823744740984
 MonoBehaviour:
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _totalHealth: 2
   _deathEffect: {fileID: 4385799115452086429, guid: 938048d948558f84494ef905fa69c914, type: 3}
-  _score: 50
+  _score: 0
   _deathSound: {fileID: 3795570665827283874, guid: b61d89d2c3410fc4fb6191c6a4c6817e, type: 3}
 --- !u!114 &2153447823744740986
 MonoBehaviour:
@@ -155,9 +155,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0127f8c607d26014291564f3d0615eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropRate: 0.05
+  dropRate: 0.02
   itemsToDrop:
   - {fileID: 2515406816958579104, guid: ce98b124e9e55d84291d716a83a0b972, type: 3}
+  - {fileID: 1017204804183883455, guid: 52a1cd6321071d24f959d83b3ef27127, type: 3}
 --- !u!114 &1132665277147158191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +186,7 @@ MonoBehaviour:
   - {x: 0.20576334, y: -0.8530369, z: 0}
   m_ShapePathHash: -1775578753
   m_Mesh: {fileID: 0}
-  m_InstanceId: 98276
+  m_InstanceId: 86208
 --- !u!1 &2153447822600836147
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +387,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1967635204, guid: 030062e34a55295479630709b97abba2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

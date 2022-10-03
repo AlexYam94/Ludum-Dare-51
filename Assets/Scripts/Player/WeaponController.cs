@@ -14,6 +14,7 @@ public class WeaponController : MonoBehaviour
     FireController _fireController;
     float _loopCounter;
     Weapon _lastWeapon;
+    float _timer = 1f;
 
 
     // Start is called before the first frame update
@@ -40,6 +41,12 @@ public class WeaponController : MonoBehaviour
             _armSprite.sprite = nextWeapon.weaponSprite;
 
         }
+        if (_timer < 0)
+        {
+            _timer = 1f;
+            ScoreController.GetInstance().Add(1);
+        }
+        _timer -= Time.deltaTime;
     }
 
     private Weapon GetRandomWeapon()

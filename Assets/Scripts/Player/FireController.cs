@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static Bullet;
 using static FirePattern;
@@ -15,6 +16,7 @@ public class FireController : MonoBehaviour
     [SerializeField] int _bulletPoolInitialCount = 10;
     [SerializeField] AudioClip _emptyGunShot;
     [SerializeField] AudioSource _audioSource;
+    [SerializeField] TextMeshProUGUI _ammoText;
 
     public Weapon _currentWeapon;
 
@@ -72,6 +74,7 @@ public class FireController : MonoBehaviour
 
     private void Update()
     {
+        _ammoText.text = bulletCount + "/" +_currentWeapon.capacity;
         //poolCount = _bulletPool.GetCount();
         //DecideFirePosition();
         if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0) || (Input.GetKey(KeyCode.Mouse0) && bulletCount > 0))
@@ -201,5 +204,10 @@ public class FireController : MonoBehaviour
         //StopCoroutine(_currentReloadCoroutine);
         _playerAnimation.OverrideArmController(nextWeapon.weaponAnimatorController);
         _fireCounter = 0;
+    }
+
+    public void Reload(float percentage)
+    {
+        bulletCount += (int)Mathf.Ceil(_currentWeapon.capacity * percentage);
     }
 }

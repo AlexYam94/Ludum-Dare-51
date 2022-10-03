@@ -21,18 +21,21 @@ public class RespawnController : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //    DontDestroyOnLoad(gameObject);
         }
         else
-        {
-            Destroy(gameObject);
+            {
+                Destroy(gameObject);
+            }
         }
-    }
     // Start is called before the first frame update
     void Start()
     {
         _player = PlayerHealthController.GetInstance().transform.gameObject;
         _respawnPoint = _player.transform.position;
+        _player.SetActive(true);
+        PlayerHealthController.GetInstance().FillHealth();
+        //_followCamera.LookAt = _player.gameObject.transform;
     }
 
     // Update is called once per frame
@@ -58,16 +61,18 @@ public class RespawnController : MonoBehaviour
             Instantiate(_deathEffect, _player.transform.position, _player.transform.rotation);
         }
         _player.SetActive(false);
+        UIController.GetInstance().gameObject.SetActive(false);
         yield return new WaitForSeconds(_waitToRespawn);
-        var asyncLoadLevel = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+        //var asyncLoadLevel = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+        var asyncLoadLevel = SceneManager.LoadSceneAsync("GameOver");
 
         while (!asyncLoadLevel.isDone)
         {
             yield return null;
         }
-        _player.transform.position = _respawnPoint;
-        _player.SetActive(true);
-        PlayerHealthController.GetInstance().FillHealth();
+        //_player.transform.position = _respawnPoint;
+        //_player.SetActive(true);
+        //PlayerHealthController.GetInstance().FillHealth();
         //_followCamera.LookAt = _player.gameObject.transform;
     }
 }
