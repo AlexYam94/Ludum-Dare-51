@@ -95,7 +95,13 @@ public class PlayerHealthController : MonoBehaviour
             _currentHealth += extraHealth;
         }else if(_currentHealth + extraHealth -1 == _maxHealth)
         {
-            _currentHealth += 1;
+            _currentHealth = _maxHealth;
+        }
+        if (_currentHealth <= 0)
+        {
+            _currentHealth = 0;
+            //gameObject.SetActive(false);
+            RespawnController.instance.Respawn();
         }
         UIController.GetInstance().SetHealthBarLength(_maxHealth);
         UpdateHealthUI();

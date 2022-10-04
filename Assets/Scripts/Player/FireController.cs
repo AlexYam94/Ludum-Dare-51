@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using static Bullet;
 using static FirePattern;
 
@@ -17,6 +18,7 @@ public class FireController : MonoBehaviour
     [SerializeField] AudioClip _emptyGunShot;
     [SerializeField] AudioSource _audioSource;
     [SerializeField] TextMeshProUGUI _ammoText;
+    [SerializeField] Light2D _fireLight;
 
     public Weapon _currentWeapon;
 
@@ -153,15 +155,25 @@ public class FireController : MonoBehaviour
 
             }
         */
+        StartCoroutine(FireLight());
         if (!_currentWeapon.autoMode)
         {
             _canFire = false;
         }
+
         _currentWeapon.Fire().Invoke(_firePosition,_firePosition.transform.right);
         _playerAnimation.Shoot();
         _audioSource.PlayOneShot(_currentWeapon.gunshot);
         bulletCount -= 1;
         shakeDuration = .2f;
+
+    }
+
+    IEnumerator FireLight()
+    {
+        _fireLight.gameObject.SetActive(true);
+        yield return new WaitForSeconds(.05f);
+        _fireLight.gameObject.SetActive(false);
 
     }
 

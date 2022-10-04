@@ -16,6 +16,7 @@ public class Weapon : ScriptableObject
     public float reloadTime = 2;
     public float fireRate = .1f;
     public float spread = 1;
+    public bool isFlame = true;
 
     public enum weaponType{
         pistol,

@@ -39,7 +39,7 @@ public class WeaponController : MonoBehaviour
             //TODO:
             //Change arm sprite and override animator
             _armSprite.sprite = nextWeapon.weaponSprite;
-
+            GetComponent<PlayerHealthController>()?.GetHealth(-1);
         }
         if (_timer < 0)
         {

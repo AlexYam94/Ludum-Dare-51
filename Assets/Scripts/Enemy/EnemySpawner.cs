@@ -12,7 +12,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Collider2D _spawnArea;
     [SerializeField] int _maxAvailable = 50;
     [SerializeField] int _maxSpawnNumber = 20;
+    [SerializeField] float _minPlayerDistance = 2f;
 
+    GameObject _player;
     float _spawnCounter;
     float _increaseCounter;
     private int _spawnNumber;
@@ -27,6 +29,7 @@ public class EnemySpawner : MonoBehaviour
         _increaseCounter = _increaseSpawnInterval;
         _bounds = _spawnArea.bounds;
         _spawnedEnemies = new List<GameObject>();
+        _player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -66,10 +69,15 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < _spawnNumber; i++)
         {
             System.Random rand = new System.Random();
-            int index = rand.Next(0, _enemyToSpawn.Length); 
-            Vector2 pos = new Vector2(
-             UnityEngine.Random.Range(_bounds.min.x, _bounds.max.x),
-             UnityEngine.Random.Range(_bounds.min.y, _bounds.max.y));
+            int index = rand.Next(0, _enemyToSpawn.Length);
+            Vector3 pos;
+            do
+            {
+                pos = new Vector3(
+                 UnityEngine.Random.Range(_bounds.min.x, _bounds.max.x),
+                 UnityEngine.Random.Range(_bounds.min.y, _bounds.max.y),
+                 _player.transform.position.z);
+            } while (Vector3.Distance(pos, _player.transform.position) < _minPlayerDistance);
 
             _spawnedEnemies.Add(Instantiate(_enemyToSpawn[index], pos, transform.rotation));
         }
